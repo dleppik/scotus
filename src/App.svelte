@@ -38,6 +38,7 @@
     <p>
         Copyright © 2021 by David Leppik. Shared under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License</a>,
         meaning it can be used elsewhere, including in for-profit works, so long as proper attribution is made.
+        <a href="https://github.com/dleppik/scotus">Git the source!</a>
     </p>
 <p><i>Programmed using <a href="https://svelte.dev">Svelte</a>. </i></p>
 </footer>
