@@ -19,7 +19,7 @@ export interface Justice {
 
 export function defaultScotusConfig(): ScotusConfig {
     return {
-        initialYear: 2025,
+        initialYear: 2023,
         endYear: 2125,
         initialMembers: [
             {birthYear: 1955, appointedYear: 2005, name: "Roberts"},

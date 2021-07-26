@@ -1,99 +1,43 @@
 <script lang="ts">
-    import type {ScotusConfig} from "./ScotusConfig";
-    import {defaultScotusConfig} from "./ScotusConfig";
-    import SimulationResultGraph from "./SimulationResultGraph.svelte";
-    import JusticeList from "./JusticeList.svelte";
-    import {simulatorStore} from "./SimulatorStore";
-
-    let showClearYear: boolean = false;
-    let clearYear = 2050;
-    let showAddIfBelow: boolean = false;
-    let addBelowMin: number = 5;
-    let addBelowCount: number = 2;
-
-    let {initialYear, endYear, initialMembers, termYears, addPerTerm, averageAppointmentAge, averageRetirementAge} = defaultScotusConfig();
-    $: {
-        let config: ScotusConfig = {
-            initialYear: initialYear,
-            endYear: endYear,
-            initialMembers: initialMembers,
-            termYears: termYears,
-            addPerTerm: addPerTerm,
-            averageAppointmentAge: averageAppointmentAge,
-            averageRetirementAge: averageRetirementAge,
-        };
-        if (showClearYear) {
-            config.courtClearedYear = clearYear;
-        }
-        if (showAddIfBelow) {
-            config.addIfBelow = [addBelowCount, addBelowMin];
-        }
-        simulatorStore.updateConfig(config);
-    }
-
-    function s(num: number): string {
-        return num === 1 ? "" : "s";
-    }
+    import EditableSim from "./EditableSim.svelte";
+    import HideUntilVisible from "./HideUntilVisible.svelte";
 </script>
 
 <style>
-    .yearInput {
-      width: 5em;
-    }
-    .singleDigit {
-      width: 3em;
-    }
-    .twoDigit {
-      width: 4em;
+    footer {
+      padding-bottom: 16px;
     }
 </style>
 
-<h1>Scotus Appointment Simulator</h1>
+<h1>Does the Supreme Court need to have a fixed size?</h1>
+<h3><i>A simulation by David Leppik</i></h3>
 
 <p>
-    Run simulations to estimate the size of the Supreme Court if appointments were made every
-    {termYears} years regardless of retirements.
+    The members of the United States Supreme Court are chosen using a macabre lottery in which death or retirement determines whether or not a president can appoint a member. This is because the US Constitution specifies lifetime appointments and Congress has chosen to fix the size of the court. The exact size has changed over time, but it is currently set at nine members.
+</p>
+<p>
+    Changing the size of the court to any other fixed number changes the frequency of this lottery, but not its character. Within the limits of the Constitution, they only fair mechanism is to add justices at a fixed rate without regard to the court’s size. Adding one justice each presidential term gives voters, rather than chance or subterfuge, indirect control over the composition of the court.
+</p>
+<p>
+    Even if we could amend the Constitution to add term limits, that might not be wise. Judicial wisdom doers not peak at a particular age, and justices are often still improving when death or poor health force them to retire. Generational diversity is therefore best accomplished by keeping justices active as long as possible.
+</p>
+<p>
+    There is no perfect size for the court. Some people prefer odd numbers to force a majority in every decision, but a tie vote (meaning the lower court's ruling stands) isn't an unreasonable outcome when the court is divided.
+</p>
+<p>
+    Different sizes have different advantages.
+    Size promotes diversity of thought, but if it is too large, a meaningful discussion becomes difficult. When I went to college, 16 was considered the ideal class size for discussions. My church has nine member Board of Trustees, based on the theory that larger boards encourage people to be wallflowers. Regardless, there is no single exact size that has proven ideal for decision making.
 </p>
 
-<div style="min-height: 300px">
-    <SimulationResultGraph histogram={$simulatorStore.histogram}/>
-</div>
+<HideUntilVisible>
+    <EditableSim />
+</HideUntilVisible>
 
-
-<div style="display: flex; flex-flow: row">
-    <div>
-        <h3>Example simulation</h3>
-        <JusticeList justices={$simulatorStore.singleSimulation.members} />
-    </div>
-
-    <div>
-        <h2>The rules</h2>
-        <p><i>You can change them!</i></p>
-        <ul>
-            <li>Start in <input class="yearInput" type="number" bind:value={initialYear} /></li>
-            <li>Add <input class="singleDigit" bind:value={addPerTerm} type="number" />
-                new member{s(addPerTerm)} every
-                <input style="width: 3em" type="number" bind:value={termYears} />
-                year{s(termYears)}.</li>
-            <li>Average new member appointed at age <input class="yearInput" type="number" bind:value={averageAppointmentAge} /></li>
-            <li>Average member retires at age <input type="number" class="twoDigit" bind:value={averageRetirementAge} /></li>
-        </ul>
-        <hr/>
-        <p>Advanced rules</p>
-        <ul>
-            <li><input type="checkbox" bind:checked={showClearYear}/>
-                Court tragedy (all justices removed) in year
-                <input type="number" disabled={!showClearYear} class="yearInput" bind:value={clearYear} />
-            </li>
-            <li><input type="checkbox" bind:checked={showAddIfBelow}/>
-                Appoint up to
-                <input type="number" disabled={!showAddIfBelow} class="singleDigit" bind:value={addBelowCount} />
-                per term if the court size is below
-                <input type="number" disabled={!showAddIfBelow} class="singleDigit" bind:value={addBelowMin} />
-                <br/>
-                <i>Members are always added in the first year of the term, even in this case.</i>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<footer>
+    <hr>
+    <p>
+        Copyright © 2021 by David Leppik. Shared under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License</a>,
+        meaning it can be used elsewhere, including in for-profit works, so long as proper attribution is made.
+    </p>
+<p><i>Programmed using <a href="https://svelte.dev">Svelte</a>. </i></p>
+</footer>

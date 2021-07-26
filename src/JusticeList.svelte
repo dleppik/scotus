@@ -12,7 +12,7 @@
 </script>
 <style>
   table, p {
-    font-size: 12px;
+    font-size: 13px;
   }
 
     .name {
@@ -20,6 +20,7 @@
     }
     td {
       text-align: right;
+      white-space: nowrap;
     }
     td.graph {
       text-align: left;
@@ -31,18 +32,22 @@
     }
 </style>
 
-<p>Age at time of appointment is approximate.</p>
-
-<table>
-    <tr><th>Justice</th><th>Born</th><th>Appointed</th><th>Retired</th><th>Years on Court</th></tr>
-    {#each justices as justice}
-        <tr>
-            <th class="name">{justice.name ?? "Simulated"}</th>
-            <td>{justice.birthYear}</td>
-            <td>{justice.appointedYear} (age {justice.appointedYear - justice.birthYear})</td>
-            <td>{justice.retiredYear}</td>
-            <td>{Math.max(1, justice.retiredYear - justice.appointedYear)}</td>
-            <td class="graph"><div style={`margin-left: ${barMargin(justice)}px; width: ${barWidth(justice)}px`}></div></td>
-        </tr>
-    {/each}
-</table>
+<p><i>Ages are approximate.</i></p>
+<div style="max-width: 95vw; overflow-x: scroll">
+    <table>
+        <tr style="font-style: italic"><th>Justice</th><th>Born</th><th>Appointed</th><th>Retired</th><th>Years on Court</th></tr>
+        {#each justices as justice}
+            <tr>
+                <th class="name">{justice.name ?? "Simulated"}</th>
+                <td>{justice.birthYear}</td>
+                <td>{justice.appointedYear} (age {justice.appointedYear - justice.birthYear})</td>
+                <td>{justice.retiredYear}</td>
+                <td>
+                    {Math.max(1, justice.retiredYear - justice.appointedYear)}
+                    (age {justice.retiredYear - justice.birthYear})
+                </td>
+                <td class="graph"><div style={`margin-left: ${barMargin(justice)}px; width: ${barWidth(justice)}px`}></div></td>
+            </tr>
+        {/each}
+    </table>
+</div>
