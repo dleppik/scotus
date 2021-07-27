@@ -80,7 +80,6 @@
         const simYears = histogram.simulationCount * Object.keys(histogram.histogramsByYear).length;
         const hists = histogram.histogramsByYear;
         const countsBySize = new Map<number,number>();
-        let sum = 0;
         Object.keys(hists)
             .forEach(year =>
                 Object.keys(hists[year])
@@ -89,12 +88,19 @@
                         const oldCount = countsBySize.get(size) ?? 0;
                         countsBySize.set(size, oldCount + hists[year][size])
                 }));
-        const mostCommonSizes = Array.from(countsBySize.entries()).sort((a, b) => b[1] - a[1]).slice(0, 3);
-        return `Top court sizes: ${mostCommonSizes.map(s => `${s[0]} (${formatPercent(s[1]/simYears)})` ).join(", ")}`
+        const mostCommonSizes = Array.from(countsBySize.entries()).sort((a, b) => b[1] - a[1]).slice(0, 4);
+        const sizeStr = mostCommonSizes.map(s => `${s[0]} (${formatPercent(s[1]/simYears)})` ).join(", ");
+        return `Top court sizes: ${sizeStr}`;
     }
 
     function formatPercent(fraction: number): string {
         return new Intl.NumberFormat('en-us', { maximumSignificantDigits: 2 }).format(fraction*100)+"%";
+    }
+
+    /** Hack to get around Svelte bug where text isn't fully cleared */
+    function updateHelpText(text: string) {
+        helpText = "";
+        setTimeout(() => {helpText = text}, 1);
     }
 
 </script>
@@ -153,10 +159,11 @@
     .help {
       font-size: 12px;
       width: 25%;
+      height: 3em; /* Keep the height from changing on mouseover. */
     }
 </style>
 
-<div style="overflow-x: scroll; width: 100%" on:mouseleave={() => helpText = overallStats()}>
+<div style="overflow-x: scroll; width: 100%" on:mouseleave={() => updateHelpText(overallStats())}>
     <svg  width={width} height={height}>
         <g class="year-ticks">
             {#each xTicks as tick}
@@ -179,8 +186,8 @@
         {#each Object.keys(histogram.histogramsByYear) as year}
             {#each Object.keys(histogram.histogramsByYear[year]) as scotusSize}
                 <g class="svg-dot" transform="translate({scaledX(year)}, {scaledY(scotusSize)})"
-                        on:mouseover={() => helpText = help(year, scotusSize)}
-                        on:focus={() => helpText = help(year, scotusSize)}>
+                        on:mouseover={() => updateHelpText(help(year, scotusSize))}
+                        on:focus={() => updateHelpText(help(year, scotusSize))}>
                     <circle r={ 1 + ((scale-2)/2) } class="svg-dot-focus"/>
                     <circle r={(scale-2)/2} fill={color(year, scotusSize)}/>
                 </g>
