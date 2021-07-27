@@ -22,11 +22,19 @@
     Even if we could amend the Constitution to add term limits, that might not be wise. Judicial wisdom doers not peak at a particular age, and justices are often still improving when death or poor health force them to retire. Generational diversity is therefore best accomplished by keeping justices active as long as possible.
 </p>
 <p>
-    There is no perfect size for the court. Some people prefer odd numbers to force a majority in every decision, but a tie vote (meaning the lower court's ruling stands) isn't an unreasonable outcome when the court is divided.
+    There is no perfect size for the court. Some people prefer odd numbers to force a majority in every decision, but a tie vote (meaning the lower court's ruling stands) isn't an unreasonable outcome when the court is divided. The Court was founded with six members, and grew to 10 before being fixed at 9 in 1869.
 </p>
 <p>
     Different sizes have different advantages.
-    Size promotes diversity of thought, but if it is too large, a meaningful discussion becomes difficult. When I went to college, 16 was considered the ideal class size for discussions. My church has nine member Board of Trustees, based on the theory that larger boards encourage people to be wallflowers. Regardless, there is no single exact size that has proven ideal for decision making.
+    Size promotes diversity of thought, but if it is too large, a meaningful discussion becomes difficult. When I went to college, 16 was considered the ideal class size for discussions. My church has nine member Board of Trustees, based on the theory that larger boards encourage people to be wallflowers. Regardless, there is no single ideal size for decision making.
+</p>
+
+<p>
+    The simulation below shows what would happen if one new justice were appointed every four years like clockwork, while justices retire whenever they want, but typically at age 85. It is a <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation:</a> it runs over and over to explore the range of outcomes. This is a live simulation, so the results may be slightly different if you reload, but because it runs 5,000 times, the end result rarely differs by even one percent.
+</p>
+
+<p>
+    When justices are appointed around age 50 and retire around 85, we have a 9-member court 39% of the time, and it is between 7 and 10 members {39 + 25 +24 + 6}% of the time. <i>All of these are sizes that were explicitly chosen by Congress at one point or another.</i> If justices are appointed older and retire younger, from 55 to 75, then the court will have an average of 5 justices.
 </p>
 
 <HideUntilVisible>
@@ -38,7 +46,8 @@
     <p>
         Copyright © 2021 by David Leppik. Shared under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License</a>,
         meaning it can be used elsewhere, including in for-profit works, so long as proper attribution is made.
-        <a href="https://github.com/dleppik/scotus">Git the source!</a>
     </p>
-<p><i>Programmed using <a href="https://svelte.dev">Svelte</a>. </i></p>
+<p>
+    <a href="https://github.com/dleppik/scotus">Git the source!</a>
+    <i>(Programmed using <a href="https://svelte.dev">Svelte</a>.)</i></p>
 </footer>
