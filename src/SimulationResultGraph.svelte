@@ -29,7 +29,8 @@
         }
 
         xTicks = [];
-        for (let i=(config.initialYear); i < config.endYear; i += 5) {
+        const xTickStart = Math.floor((config.initialYear + 4) / 5) * 5;
+        for (let i=(xTickStart); i < config.endYear; i += 5) {
             xTicks.push(i);
         }
 
@@ -120,6 +121,23 @@
         stroke: #eee;
     }
 
+    .y-tick .background {
+      opacity: 0;
+    }
+
+    .y-tick:hover .background {
+      fill: #b4b400;
+      opacity: 15%;
+    }
+
+    .y-tick:hover text {
+      stroke: #888;
+    }
+
+    .y-tick:hover line {
+      stroke: #b4b400;
+    }
+
     .svg-dot-focus {
       fill: none;
       stroke: none;
@@ -176,7 +194,8 @@
 
         <g class="y-ticks">
             {#each yTicks as tick}
-                <g transform="translate(0, {scaledY(tick)})">
+                <g class="y-tick" transform="translate(0, {scaledY(tick)})">
+                    <rect y="-5" x="0" width="100%" height="12" class="background" />
                     <line y1="0" y2="0" x1="14" x2={width} />
                     <text y="4" x="12">{tick}</text>
                 </g>
