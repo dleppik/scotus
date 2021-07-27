@@ -34,7 +34,11 @@
 </p>
 
 <p>
-    When justices are appointed around age 50 and retire around 85, we have a 9-member court 39% of the time, and it is between 7 and 10 members {39 + 25 +24 + 6}% of the time. <i>All of these are sizes that were explicitly chosen by Congress at one point or another.</i> If justices are appointed older and retire younger, from 55 to 75, then the court will have an average of 5 justices.
+    When justices are appointed around age 50 and retire around 85, we have a 9-member court 39% of the time, and it is between 7 and 10 members {39 + 25 +24 + 6}% of the time. <i>All of these are sizes that were explicitly chosen by Congress at one point or another.</i> But perhaps the best argument for eliminating a fixed size is what happens if the entire Court is killed in a terrible accident. Under the present system, the current president's choices would dominate for the next thirty years. With fixed-rate appointments, the court would be small but diverse—and could recover quicker with emergency rules.
+</p>
+
+<p>
+    Replacing a fixed-sized court with fixed-rate appointments would not eliminate political shenanigans. A hostile senate could still deprive a president of appointments, but it would have to stonewall for a full four years and would avoid only one justice. Fixed-rate appointments are a better way to have a wise, diverse Supreme Court.
 </p>
 
 <HideUntilVisible>

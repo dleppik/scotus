@@ -74,7 +74,7 @@
     function help(year: number, scotusSize: number): string {
         const size = histogram.histogramsByYear[year][scotusSize];
         const pctStr = formatPercent(size / histogram.simulationCount);
-        return `${pctStr} of simulations had a ${scotusSize}-member court in ${year}`;
+        return `${pctStr} of simulations have a ${scotusSize}-member court in ${year}`;
     }
 
     function overallStats() {
@@ -177,7 +177,7 @@
     .help {
       font-size: 12px;
       width: 25%;
-      height: 3em; /* Keep the height from changing on mouseover. */
+      min-height: 3em; /* Keep the height from changing on mouseover. */
     }
 </style>
 
