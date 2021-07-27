@@ -21,7 +21,7 @@ body {
 	}
 }
 
-p {
+p, .text-area {
 	max-width: 68em;
 }
 

@@ -215,7 +215,7 @@
     </svg>
 </div>
 
-<div class="status">
+<div class="text-area status">
     <div class="simulation-count">
         <b>{histogram.simulationCount}</b> simulation{histogram.simulationCount === 1 ? "" : "s" }
     </div>
