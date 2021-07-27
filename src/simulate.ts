@@ -20,7 +20,7 @@ export function simulate(config: ScotusConfig): SimulationResult {
     let initialRetirementMin = initialYear + 2  - (initialYear % 2);
     let members: Justice[] = initialMembers.map(m => { return {
         ...m,
-        retiredYear:retirement(retireRand, averageRetirementAge, initialRetirementMin, m.birthYear)}
+        retiredYear:retirement(retireRand, averageRetirementAge, initialRetirementMin, m.birthYear, courtClearedYear)}
     });
     let allMembers = [...members];
 
