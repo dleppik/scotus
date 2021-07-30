@@ -8,8 +8,8 @@
     let showClearYear: boolean = false;
     let clearYear = 2050;
     let showAddIfBelow: boolean = false;
-    let addBelowMin: number = 5;
-    let addBelowCount: number = 2;
+    let addBelowMin: number = 6;
+    let addBelowCount: number = 3;
 
     let {initialYear, endYear, initialMembers, termYears, addPerTerm, averageAppointmentAge, averageRetirementAge} = defaultScotusConfig();
     $: {
